@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background-color: #eef2f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .form-card {
+            background: #ffffff;
+            padding: 30px 35px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 360px;
+        }
+
+        h2 {
+            margin: 0 0 20px 0;
+            text-align: center;
+            color: #222;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 14px;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        input {
+            padding: 10px 12px;
+            border: 1.5px solid #ccd4e0;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+            input:focus {
+                border-color: #4a6cf7;
+            }
+
+            input:invalid:not(:placeholder-shown) {
+                border-color: #e74c3c;
+            }
+
+            input:valid {
+                border-color: #2ecc71;
+            }
+
+        button {
+            width: 100%;
+            margin-top: 8px;
+            padding: 12px;
+            background-color: #4a6cf7;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+            button:hover {
+                background-color: #3656d6;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="form-card">
+        <h2>Регистрация</h2>
+
+        <form action="/register" method="POST">
+            <!-- 1) ФИО -->
+            <div class="field">
+                <label for="fio">ФИО:</label>
+                <input type="text" id="fio" name="fio" placeholder="Иванов Иван Иванович"
+                       pattern="^[A-Za-zА-Яа-яЁё\s]+$"
+                       title="Только буквы (кириллица или латиница) и пробелы" required>
+            </div>
+
+            <!-- 2) Логин -->
+            <div class="field">
+                <label for="login">Логин:</label>
+                <input type="text" id="login" name="login" placeholder="UserLogin_12345"
+                       pattern="^(?=.*[a-z])(?=.*[A-Z])(?=(?:.*\d){3,})(?=.*[^A-Za-z0-9\s])(?!.*[А-Яа-яЁё\s]).{15,}$"
+                       title="Только латиница, минимум 15 символов: заглавная, строчная, от 3 цифр и 1 спецсимвол" required>
+            </div>
+
+            <!-- 3) Email -->
+            <div class="field">
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" placeholder="user@example.com"
+                       pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                       title="Почта на латинице с символом @ и доменом (например, user@mail.ru)" required>
+            </div>
+
+            <!-- 4) Возраст -->
+            <div class="field">
+                <label for="age">Возраст:</label>
+                <input type="text" id="age" name="age" placeholder="20"
+                       pattern="^(1[89]|[2-9]\d)$"
+                       title="Число от 18 до 99" required>
+            </div>
+
+            <!-- 5) Пароль -->
+            <div class="field">
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" placeholder="ПарольКириллицей_123"
+                       pattern="^(?=.*[а-яё])(?=.*[А-ЯЁ])(?=(?:.*\d){3,})(?=.*[^А-Яа-яЁё0-9\s])(?!.*[A-Za-z\s]).{15,}$"
+                       title="Только кириллица, минимум 15 символов: заглавная, строчная, от 3 цифр 1 спецсимвол" required>
+            </div>
+
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+    </div>
+
+</body>
+</html>
